@@ -6,7 +6,7 @@ out_of_guesses = False
 
 while guess_word != secret_word and not out_of_guesses:
     if guess_count < guess_limit:
-        guess_word = raw_input("Enter an animal: ")
+        guess_word = input("Enter an animal: ")
         guess_count += 1
     else:
         out_of_guesses = True

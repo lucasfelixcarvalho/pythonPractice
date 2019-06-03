@@ -12,4 +12,4 @@ def translate(phrase):
     return translation
 
 
-print(translate(raw_input("Enter a phrase: ")))
+print(translate(input("Enter a phrase: ")))
