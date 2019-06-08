@@ -47,7 +47,7 @@ class Calculator:
         else:
             self.__OPERATION = ""
 
-    def __set_result(self, result):
+    def __set_text(self, result):
         self.__clear_display()
         self.__entry_text.set(result)
 
@@ -64,7 +64,12 @@ class Calculator:
         elif self.__OPERATION == "/":
             result_from_operation = divide(self.__NUMBER1, self.__NUMBER2)
 
-        self.__set_result(result_from_operation)
+        self.__set_text(result_from_operation)
+
+    def __click_positive_negative_button(self):
+        number = self.__entry_text.get()
+        number = change_signal(number)
+        self.__set_text(number)
 
     def __add_text_box(self, text_box_master):
         self.__entry_text = tk.StringVar()
@@ -109,7 +114,7 @@ class Calculator:
         button = tk.Button(master=positive_negative_buttons_master, activebackground='gray', bg='white')
         button["height"] = self.__BUTTON_HEIGHT
         button["width"] = self.__BUTTON_WIDTH
-
+        button["command"] = self.__click_positive_negative_button
         button["text"] = "+\n-"
         button.grid(row=3, column=0)
 
