@@ -78,10 +78,7 @@ class Calculator:
 
     def __add_numbers_buttons(self, numbers_buttons_master):
         for n in [7, 8, 9, 4, 5, 6, 1, 2, 3, 0]:  # numbers in order like the numeric keypad
-            button = tk.Button(master=numbers_buttons_master, activebackground='gray', bg='white')
-            button["height"] = self.__BUTTON_HEIGHT
-            button["width"] = self.__BUTTON_WIDTH
-            button["text"] = str(n)
+            button = self.__return_default_button(numbers_buttons_master, str(n))
             button["command"] = lambda arg1 = str(n): self.__click_number_button(arg1)
 
             if n in range(7, 10):  # 7, 8, 9
@@ -103,36 +100,24 @@ class Calculator:
             button.grid(row=row_position, column=column_position)
 
     def __add_clear_buttons(self, clear_buttons_master):
-        button = tk.Button(master=clear_buttons_master, activebackground='gray', bg='white')
-        button["height"] = self.__BUTTON_HEIGHT
-        button["width"] = self.__BUTTON_WIDTH
+        button = self.__return_default_button(clear_buttons_master, "CE")
         button["command"] = self.__clear_display
-        button["text"] = "CE"
         button.grid(row=4, column=0)
 
     def __add_positive_negative_buttons(self, positive_negative_buttons_master):
-        button = tk.Button(master=positive_negative_buttons_master, activebackground='gray', bg='white')
-        button["height"] = self.__BUTTON_HEIGHT
-        button["width"] = self.__BUTTON_WIDTH
+        button = self.__return_default_button(positive_negative_buttons_master, "+\n-")
         button["command"] = self.__click_positive_negative_button
-        button["text"] = "+\n-"
         button.grid(row=3, column=0)
 
     def __add_dot_button(self, dot_button_master):
-        button = tk.Button(master=dot_button_master, activebackground='gray', bg='white')
-        button["height"] = self.__BUTTON_HEIGHT
-        button["width"] = self.__BUTTON_WIDTH
+        button = self.__return_default_button(dot_button_master, ".")
         button["command"] = self.__click_dot_button
-        button["text"] = "."
         button.grid(row=3, column=2)
 
     def __add_operation_buttons(self, operation_buttons_master):
         row_position = 0
         for op in self.__OPERATION_SYMBOLS:
-            button = tk.Button(master=operation_buttons_master, activebackground='gray', bg='white')
-            button["height"] = self.__BUTTON_HEIGHT
-            button["width"] = self.__BUTTON_WIDTH
-            button["text"] = op
+            button = self.__return_default_button(operation_buttons_master, op)
 
             if op == "=":
                 button["command"] = self.__click_equal_button
@@ -140,6 +125,14 @@ class Calculator:
                 button["command"] = lambda arg1=op: self.__set_operation(arg1)
 
             column_position = 3
-
             button.grid(row=row_position, column=column_position)
+
             row_position += 1
+
+    def __return_default_button(self, button_master, text_value):
+        button = tk.Button(master=button_master, activebackground='gray', bg='white')
+        button["height"] = self.__BUTTON_HEIGHT
+        button["width"] = self.__BUTTON_WIDTH
+        button["text"] = text_value
+
+        return button
