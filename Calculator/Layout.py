@@ -29,8 +29,10 @@ class Calculator:
 
     def __add_text_box(self, text_box_master):
         self.__entry_text = tk.StringVar()
-        self.__text_box = tk.Entry(master=text_box_master, bg='white', width=25, justify='right', textvariable=self.__entry_text, state=tk.DISABLED, font=("Arial", 12, "bold"))
+        self.__text_box = tk.Entry(master=text_box_master, bg='white', width=20, justify='right', textvariable=self.__entry_text, state=tk.DISABLED)
+        self.__text_box["font"] = ("Arial", 14, "bold")
         self.__text_box["disabledforeground"] = 'black'
+        self.__text_box["borderwidth"] = 5
         self.__text_box.pack()
 
     def __add_numbers_buttons(self, numbers_buttons_master):
@@ -136,9 +138,9 @@ class Calculator:
         return self.__entry_text.get()
 
     def __return_default_button(self, button_master, text_value):
-        button = tk.Button(master=button_master, activebackground='gray', bg='white')
+        button = tk.Button(master=button_master, activebackground='gray', bg='white', bd=2)
         button["height"] = self.__BUTTON_HEIGHT
         button["width"] = self.__BUTTON_WIDTH
         button["text"] = text_value
-
+        button["font"] = ("Arial", 10, "bold")
         return button
