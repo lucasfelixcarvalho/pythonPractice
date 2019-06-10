@@ -14,8 +14,9 @@ class Calculator:
     def __init__(self):
         self.main_window = tk.Tk()
         self.main_window.winfo_toplevel().title('Calculator')
+        self.main_window.resizable(0, 0)
 
-        background = tk.Frame(master=self.main_window, bg='white')
+        background = tk.Frame(master=self.main_window)
 
         self.__add_text_box(self.main_window)
         self.__add_numbers_buttons(background)
@@ -28,7 +29,8 @@ class Calculator:
 
     def __add_text_box(self, text_box_master):
         self.__entry_text = tk.StringVar()
-        self.__text_box = tk.Entry(master=text_box_master, bg='white', width=50, justify='right', textvariable=self.__entry_text)
+        self.__text_box = tk.Entry(master=text_box_master, bg='white', width=25, justify='right', textvariable=self.__entry_text, state=tk.DISABLED, font=("Arial", 12, "bold"))
+        self.__text_box["disabledforeground"] = 'black'
         self.__text_box.pack()
 
     def __add_numbers_buttons(self, numbers_buttons_master):
