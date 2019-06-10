@@ -14,7 +14,6 @@ class Calculator:
     def __init__(self):
         self.main_window = tk.Tk()
         self.main_window.winfo_toplevel().title('Calculator')
-        self.main_window.positionfrom()
 
         background = tk.Frame(master=self.main_window, bg='white')
 
@@ -26,50 +25,6 @@ class Calculator:
         self.__add_clear_buttons(background)
 
         background.pack()
-
-    def __click_number_button(self, value):
-        current_text = self.__entry_text.get()
-        self.__entry_text.set(current_text + str(value))
-
-    def __click_dot_button(self):
-        current_text = self.__entry_text.get()
-        if "." not in current_text:
-            self.__entry_text.set(current_text + ".")
-
-    def __clear_display(self):
-        self.__entry_text.set('')
-
-    def __set_operation(self, value):
-        if value in self.__OPERATION_SYMBOLS:
-            self.__OPERATION = value
-            self.__NUMBER1 = self.__entry_text.get()
-            self.__clear_display()
-        else:
-            self.__OPERATION = ""
-
-    def __set_text(self, result):
-        self.__clear_display()
-        self.__entry_text.set(result)
-
-    def __click_equal_button(self):
-        self.__NUMBER2 = self.__entry_text.get()
-        result_from_operation = 0
-
-        if self.__OPERATION == "+":
-            result_from_operation = add(self.__NUMBER1, self.__NUMBER2)
-        elif self.__OPERATION == "-":
-            result_from_operation = subtract(self.__NUMBER1, self.__NUMBER2)
-        elif self.__OPERATION == "*":
-            result_from_operation = multiply(self.__NUMBER1, self.__NUMBER2)
-        elif self.__OPERATION == "/":
-            result_from_operation = divide(self.__NUMBER1, self.__NUMBER2)
-
-        self.__set_text(result_from_operation)
-
-    def __click_positive_negative_button(self):
-        number = self.__entry_text.get()
-        number = change_signal(number)
-        self.__set_text(number)
 
     def __add_text_box(self, text_box_master):
         self.__entry_text = tk.StringVar()
@@ -99,20 +54,10 @@ class Calculator:
 
             button.grid(row=row_position, column=column_position)
 
-    def __add_clear_buttons(self, clear_buttons_master):
-        button = self.__return_default_button(clear_buttons_master, "CE")
-        button["command"] = self.__clear_display
-        button.grid(row=4, column=0)
-
     def __add_positive_negative_buttons(self, positive_negative_buttons_master):
         button = self.__return_default_button(positive_negative_buttons_master, "+\n-")
         button["command"] = self.__click_positive_negative_button
         button.grid(row=3, column=0)
-
-    def __add_dot_button(self, dot_button_master):
-        button = self.__return_default_button(dot_button_master, ".")
-        button["command"] = self.__click_dot_button
-        button.grid(row=3, column=2)
 
     def __add_operation_buttons(self, operation_buttons_master):
         row_position = 0
@@ -128,6 +73,65 @@ class Calculator:
             button.grid(row=row_position, column=column_position)
 
             row_position += 1
+
+    def __add_dot_button(self, dot_button_master):
+        button = self.__return_default_button(dot_button_master, ".")
+        button["command"] = self.__click_dot_button
+        button.grid(row=3, column=2)
+
+    def __add_clear_buttons(self, clear_buttons_master):
+        button = self.__return_default_button(clear_buttons_master, "CE")
+        button["command"] = self.__clear_display
+        button.grid(row=4, column=0)
+
+    def __click_number_button(self, value):
+        current_text = self.__entry_text.get()
+        self.__entry_text.set(current_text + str(value))
+
+    def __click_positive_negative_button(self):
+        number = self.__entry_text.get()
+        number = change_signal(number)
+        self.__set_display_text(number)
+
+    def __click_equal_button(self):
+        self.__NUMBER2 = self.__get_display_text()
+
+        if self.__OPERATION == "+":
+            result_from_operation = add(self.__NUMBER1, self.__NUMBER2)
+        elif self.__OPERATION == "-":
+            result_from_operation = subtract(self.__NUMBER1, self.__NUMBER2)
+        elif self.__OPERATION == "*":
+            result_from_operation = multiply(self.__NUMBER1, self.__NUMBER2)
+        elif self.__OPERATION == "/":
+            result_from_operation = divide(self.__NUMBER1, self.__NUMBER2)
+        else:
+            return
+
+        self.__set_display_text(result_from_operation)
+        self.__OPERATION = ""
+
+    def __set_operation(self, value):
+        if value in self.__OPERATION_SYMBOLS:
+            self.__OPERATION = value
+            self.__NUMBER1 = self.__entry_text.get()
+            self.__clear_display()
+        else:
+            self.__OPERATION = ""
+
+    def __click_dot_button(self):
+        current_text = self.__entry_text.get()
+        if "." not in current_text:
+            self.__entry_text.set(current_text + ".")
+
+    def __clear_display(self):
+        self.__entry_text.set('')
+
+    def __set_display_text(self, result):
+        self.__clear_display()
+        self.__entry_text.set(result)
+
+    def __get_display_text(self):
+        return self.__entry_text.get()
 
     def __return_default_button(self, button_master, text_value):
         button = tk.Button(master=button_master, activebackground='gray', bg='white')
