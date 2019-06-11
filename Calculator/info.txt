@@ -1,0 +1,3 @@
+A very basic calculator built using Tkinter as the GUI lib.
+The calculator supports the 4 basic operations (+, -, /, *).
+No input from keyboard is supported.
