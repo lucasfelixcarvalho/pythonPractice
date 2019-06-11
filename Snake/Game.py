@@ -4,10 +4,10 @@ import Layout as l
 
 
 def initialize():
-    screen = curses.initscr()
-    screen.clear()
-    l.get_screen_borders(screen)
-    screen.refresh()
+    main_screen = curses.initscr()
+    main_screen.clear()
+    game_screen = l.Game()
+    game_screen.get_screen_borders(main_screen)
 
 
 initialize()
