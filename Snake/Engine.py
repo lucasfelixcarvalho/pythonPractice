@@ -1,7 +1,7 @@
-import Snake as s
+import Snake as S
 import curses
 
-snake = s.Snake()
+snake = S.Snake()
 
 
 def start_game(screen):
@@ -9,7 +9,7 @@ def start_game(screen):
 
 
 def __update_snake(screen):
-    for position in snake.snake:
-        screen.addstr(position[0], position[1], position[2])
+    for body in snake.snake:
+        screen.addstr(body.column_position, body.row_position, body.visual_char, curses.A_REVERSE)
 
     screen.refresh()

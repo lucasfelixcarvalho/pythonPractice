@@ -17,7 +17,7 @@ class Game:
 
 class Snake:
     SNAKE_HEAD = '@'
-    SNAKE_BODY = '*'
+    SNAKE_BODY = ' '
 
 
 class Food:
