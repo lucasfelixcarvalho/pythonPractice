@@ -1,6 +1,3 @@
-import curses
-
-
 class Game:
     @staticmethod
     def get_screen_borders(screen):
@@ -19,9 +16,9 @@ class Game:
 
 
 class Snake:
-    __SNAKE_HEAD = '@'
-    __SNAKE_BODY = '*'
+    SNAKE_HEAD = '@'
+    SNAKE_BODY = '*'
 
 
 class Food:
-    __FOOD_SYMBOL = '#'
+    FOOD_SYMBOL = '#'
