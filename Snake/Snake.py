@@ -33,4 +33,5 @@ class Snake:
         self.snake.insert(0, new_head)
         self.snake[1].visual_char = l.Snake.SNAKE_BODY
 
-        self.snake.pop()
+    def set_new_tail(self):
+        return self.snake.pop()
