@@ -5,6 +5,7 @@ import Engine as e
 
 def main(main_screen):
     curses.curs_set(0)
+    curses.cbreak()
 
     main_screen.keypad(True)
     main_screen.clear()
@@ -14,7 +15,6 @@ def main(main_screen):
 
     window_max_rows, window_max_columns = main_screen.getmaxyx()
     e.run_game(main_screen, window_max_rows, window_max_columns)
-    time.sleep(3)
 
 
 curses.wrapper(main)
