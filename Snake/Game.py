@@ -1,5 +1,4 @@
 import curses
-import time
 import Engine as e
 
 
@@ -18,4 +17,3 @@ def main(main_screen):
 
 
 curses.wrapper(main)
-

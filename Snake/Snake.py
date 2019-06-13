@@ -13,12 +13,12 @@ class Snake:
         row_position = 1
         column_position = 1
 
-        self.snake = [_BodyPart(row_position + 2, column_position, l.Snake.SNAKE_HEAD),
-                      _BodyPart(row_position + 1, column_position, l.Snake.SNAKE_BODY),
-                      _BodyPart(row_position, column_position, l.Snake.SNAKE_BODY)]
+        self.body = [_BodyPart(row_position + 2, column_position, l.Snake.SNAKE_HEAD),
+                     _BodyPart(row_position + 1, column_position, l.Snake.SNAKE_BODY),
+                     _BodyPart(row_position, column_position, l.Snake.SNAKE_BODY)]
 
     def move_snake(self, direction):
-        curr_head = self.snake[0]
+        curr_head = self.body[0]
         new_head = _BodyPart(0, 0, l.Snake.SNAKE_HEAD)
 
         if direction == 'LEFT':
@@ -30,8 +30,15 @@ class Snake:
         if direction == 'UP':
             new_head = _BodyPart(curr_head.column_position - 1, curr_head.row_position, curr_head.visual_char)
 
-        self.snake.insert(0, new_head)
-        self.snake[1].visual_char = l.Snake.SNAKE_BODY
+        self.body.insert(0, new_head)
+        self.body[1].visual_char = l.Snake.SNAKE_BODY
 
-    def set_new_tail(self):
-        return self.snake.pop()
+    def remove_tail(self):
+        return self.body.pop()
+
+    def is_position_snake(self, row_position, column_position):
+        for body_part in self.body:
+            if body_part.row_position == row_position and body_part.column_position == column_position:
+                return True
+
+        return False
