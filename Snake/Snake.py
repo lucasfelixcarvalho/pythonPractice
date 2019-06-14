@@ -42,3 +42,12 @@ class Snake:
                 return True
 
         return False
+
+    def collide_itself(self):
+        curr_head = self.body[0]
+
+        for body in self.body[1:]:
+            if body.coord_y == curr_head.coord_y and body.coord_x == curr_head.coord_x:
+                return True
+
+        return False
