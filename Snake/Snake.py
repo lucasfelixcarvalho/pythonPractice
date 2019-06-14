@@ -36,9 +36,9 @@ class Snake:
     def remove_tail(self):
         return self.body.pop()
 
-    def is_position_snake(self, row_position, column_position):
+    def is_position_snake(self, coord_y, coord_x):
         for body_part in self.body:
-            if body_part.coord_x == row_position and body_part.coord_y == column_position:
+            if body_part.coord_x == coord_x and body_part.coord_y == coord_y:
                 return True
 
         return False

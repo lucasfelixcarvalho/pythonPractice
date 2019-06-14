@@ -7,11 +7,10 @@ import time
 snake = S.Snake()
 
 
-def run_game(screen, window_height, window_width):
+def run_game(screen, window_height, window_width):  # window_height = y axis; window_width = x axis
     __start_game(screen)
     food_location = __spawn_food(screen, window_height, window_width)
     direction = 'DOWN'
-
     while True:
         next_key = screen.getch()
         new_direction = __map_direction(next_key)
@@ -60,7 +59,7 @@ def __map_direction(key_pressed):
         return None
 
 
-def __spawn_food(screen, x_border, y_border):
+def __spawn_food(screen, y_border, x_border):
     create_food = True
     new_food = (0, 0)
 
@@ -70,12 +69,12 @@ def __spawn_food(screen, x_border, y_border):
         if not snake.is_position_snake(new_food[1], new_food[0]):
             create_food = False
 
-    screen.addch(new_food[1], new_food[0], Layout.Food.FOOD_SYMBOL)
+    screen.addch(new_food[0], new_food[1], Layout.Food.FOOD_SYMBOL)
     return new_food
 
 
 def __food_eaten(food, snake_head):
-    if food[0] == snake_head.coord_x and food[1] == snake_head.coord_y:
+    if food[0] == snake_head.coord_y and food[1] == snake_head.coord_x:
         return True
     else:
         return False
