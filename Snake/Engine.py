@@ -2,13 +2,14 @@ import Snake as S
 import curses
 import random
 import Layout
+import time
 
 snake = S.Snake()
 
 
-def run_game(screen, x_border, y_border):
+def run_game(screen, window_height, window_width):
     __start_game(screen)
-    food_location = __spawn_food(screen, x_border, y_border)
+    food_location = __spawn_food(screen, window_height, window_width)
     direction = 'DOWN'
 
     while True:
@@ -18,10 +19,17 @@ def run_game(screen, x_border, y_border):
         direction = new_direction if new_direction is not None else direction
 
         snake.move_snake(direction)
+
+        if snake.body[0].row_position == window_width or snake.body[0].column_position == window_height or snake.body[0].row_position == 0 or snake.body[0].column_position == 0:
+            screen.addstr(int(window_height / 2), int(window_width / 2), 'GAME OVER')
+            screen.refresh()
+            time.sleep(5)
+            screen.endwin()
+
         is_food_eaten = __food_eaten(food_location, snake.body[0])
 
         if is_food_eaten:
-            food_location = __spawn_food(screen, x_border, y_border)
+            food_location = __spawn_food(screen, window_height, window_width)
 
         __refresh_snake_screen_position(screen, not is_food_eaten)
 

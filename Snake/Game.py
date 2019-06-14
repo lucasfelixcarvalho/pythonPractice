@@ -12,8 +12,8 @@ def main(main_screen):
     main_screen.timeout(500)
     main_screen.border(0)
 
-    window_max_rows, window_max_columns = main_screen.getmaxyx()
-    e.run_game(main_screen, window_max_rows, window_max_columns)
+    window_height, window_width = main_screen.getmaxyx()
+    e.run_game(main_screen, window_height, window_width)
 
 
 curses.wrapper(main)
