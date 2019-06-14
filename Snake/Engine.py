@@ -9,6 +9,8 @@ snake = S.Snake()
 
 def run_game(screen, window_height, window_width):  # window_height = y axis; window_width = x axis
     __start_game(screen)
+    score = 0
+
     food_location = __spawn_food(screen, window_height, window_width)
     direction = 'DOWN'
     while True:
@@ -20,11 +22,12 @@ def run_game(screen, window_height, window_width):  # window_height = y axis; wi
         snake.move_snake(direction)
 
         if __is_dead(window_height, window_width, snake.body[0]):
-            __game_over(screen, window_height, window_width)
+            __game_over(screen, window_height, window_width, score)
 
         is_food_eaten = __food_eaten(food_location, snake.body[0])
 
         if is_food_eaten:
+            score = __update_score(score)
             food_location = __spawn_food(screen, window_height, window_width)
 
         __refresh_snake_screen_position(screen, not is_food_eaten)
@@ -86,8 +89,12 @@ def __is_dead(window_height, window_width, snake_head):
     return False
 
 
-def __game_over(screen, window_height, window_width):
-    screen.addstr(int(window_height / 2), int(window_width / 2), 'GAME OVER')
+def __game_over(screen, window_height, window_width, score):
+    screen.addstr(int(window_height / 2), int(window_width / 2), 'GAME OVER - score: ' + str(score))
     screen.refresh()
     time.sleep(5)
     screen.endwin()
+
+
+def __update_score(score):
+    return score + 1
