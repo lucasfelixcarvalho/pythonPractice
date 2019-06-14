@@ -20,7 +20,7 @@ def run_game(screen, window_height, window_width):
 
         snake.move_snake(direction)
 
-        if snake.body[0].row_position == window_width or snake.body[0].column_position == window_height or snake.body[0].row_position == 0 or snake.body[0].column_position == 0:
+        if snake.body[0].coord_x == (window_width - 1) or snake.body[0].coord_y == (window_height - 1) or snake.body[0].coord_x == 0 or snake.body[0].coord_y == 0:
             screen.addstr(int(window_height / 2), int(window_width / 2), 'GAME OVER')
             screen.refresh()
             time.sleep(5)
@@ -40,11 +40,11 @@ def __start_game(screen):
 
 def __refresh_snake_screen_position(screen, remove_tail):
     for body in snake.body:
-        screen.addch(body.column_position, body.row_position, body.visual_char, curses.A_REVERSE)
+        screen.addch(body.coord_y, body.coord_x, body.visual_char, curses.A_REVERSE)
 
     if remove_tail:
         last_tail = snake.remove_tail()
-        screen.addch(last_tail.column_position, last_tail.row_position, ' ')
+        screen.addch(last_tail.coord_y, last_tail.coord_x, ' ')
 
 
 def __map_direction(key_pressed):
@@ -65,7 +65,7 @@ def __spawn_food(screen, x_border, y_border):
     new_food = (0, 0)
 
     while create_food:
-        new_food = (random.randint(1, y_border - 1), random.randint(1, x_border - 1))
+        new_food = (random.randint(1, y_border - 2), random.randint(1, x_border - 2))
 
         if not snake.is_position_snake(new_food[1], new_food[0]):
             create_food = False
@@ -75,7 +75,7 @@ def __spawn_food(screen, x_border, y_border):
 
 
 def __food_eaten(food, snake_head):
-    if food[0] == snake_head.row_position and food[1] == snake_head.column_position:
+    if food[0] == snake_head.coord_x and food[1] == snake_head.coord_y:
         return True
     else:
         return False
