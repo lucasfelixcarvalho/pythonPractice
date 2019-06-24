@@ -4,7 +4,7 @@ import random
 import Layout
 import time
 
-snake = S.Snake()
+snake = S.Snake()  # instantiate on base class?
 
 
 def run_game(screen, window_height, window_width):  # window_height = y axis; window_width = x axis
@@ -13,13 +13,13 @@ def run_game(screen, window_height, window_width):  # window_height = y axis; wi
 
     food_location = __spawn_food(screen, window_height, window_width)
     direction = 'DOWN'
-    while True:
-        next_key = screen.getch()
+    while True:  # how the loop will be handled?
+        next_key = screen.getch()  # how I'll receive the key pressed ??
         new_direction = __map_direction(next_key, direction)
 
         direction = new_direction if new_direction is not None else direction
 
-        snake.move_snake(direction)
+        snake.move_snake(direction)  # return the snake to the caller
 
         if __is_dead(window_height, window_width, snake.body[0]):
             __game_over(screen, window_height, window_width, score)
@@ -37,7 +37,7 @@ def __start_game(screen):
     __refresh_snake_screen_position(screen, True)
 
 
-def __refresh_snake_screen_position(screen, remove_tail):
+def __refresh_snake_screen_position(screen, remove_tail):  # move to specific console class
     for body in snake.body:
         screen.addch(body.coord_y, body.coord_x, body.visual_char, curses.A_REVERSE)
 
@@ -46,7 +46,7 @@ def __refresh_snake_screen_position(screen, remove_tail):
         screen.addch(last_tail.coord_y, last_tail.coord_x, ' ')
 
 
-def __map_direction(key_pressed, current_direction):
+def __map_direction(key_pressed, current_direction):  # base class. Change key_pressed to new_direction string (LEFT, UP...)
     if key_pressed == curses.KEY_LEFT and current_direction != 'RIGHT':
         return 'LEFT'
     elif key_pressed == curses.KEY_RIGHT and current_direction != 'LEFT':
@@ -59,7 +59,7 @@ def __map_direction(key_pressed, current_direction):
         return None
 
 
-def __spawn_food(screen, y_border, x_border):
+def __spawn_food(screen, y_border, x_border):  # base class. Return the X/Y position of the food
     create_food = True
     new_food = (0, 0)
 
@@ -73,14 +73,14 @@ def __spawn_food(screen, y_border, x_border):
     return new_food
 
 
-def __food_eaten(food, snake_head):
+def __food_eaten(food, snake_head):  # base class.
     if food[0] == snake_head.coord_y and food[1] == snake_head.coord_x:
         return True
     else:
         return False
 
 
-def __is_dead(window_height, window_width, snake_head):
+def __is_dead(window_height, window_width, snake_head):  # base class.
     if snake_head.coord_x == (window_width - 1) or snake_head.coord_y == (window_height - 1) or snake_head.coord_x == 0 or snake_head.coord_y == 0:
         return True
     if snake.collide_itself():
@@ -89,12 +89,12 @@ def __is_dead(window_height, window_width, snake_head):
     return False
 
 
-def __game_over(screen, window_height, window_width, score):
+def __game_over(screen, window_height, window_width, score):  # move to specific console class
     screen.addstr(int(window_height / 2), int(window_width / 2), 'GAME OVER - score: ' + str(score))
     screen.refresh()
     time.sleep(5)
     screen.endwin()
 
 
-def __update_score(score):
+def __update_score(score):  # base class.
     return score + 1

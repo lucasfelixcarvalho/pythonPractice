@@ -1,2 +1,18 @@
 The classic 'Snake' game built to play on the terminal.
 The engine and logic for the game might be used to a web based interface later on the road...
+
+---- Refactor
+
+The refactor to be done will change the engine and allow the game to be played both on console and web interface.
+For this, a master engine class will be created.
+The master class will be responsible only for moving the snake, mapping the direction, verifying if a food was eaten, informing the location of the next food and updating the score.
+This will all be done using the same base engine already built, the difference is that the base class will return in each method an appropriate data.
+Example: when moving the snake, the method on the base engine should return the array containing the position of the snake. For the next food, the X/Y location of the food, and so on...
+
+The second change will be to implement two new engines: one for the console and one for the web based interface.
+These engines are only responsible for showing the information to the player, all the logic to move, eat and more will be done in the base class.
+So each specific engine will call the methods on the base class, and using the information returned present the game in the proper way to the user.
+
+One challenge I can already see is where the loop for the game will be held: on the base class or the specific classes (duplicating it ??)?
+
+The third change is to implement methods on snake to return both head and tail. We will hide its implementation, HEAD will return snake[0] and TAIL will return snake[len(snake) - 1]
