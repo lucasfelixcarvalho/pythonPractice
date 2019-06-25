@@ -1,4 +1,6 @@
 class Chef:
+    def __init__(self):
+        self.name = "Peter"
 
     def make_chicken(self):
         print("The chef makes a chicken")
