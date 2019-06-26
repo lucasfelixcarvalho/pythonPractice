@@ -17,6 +17,8 @@ class Snake:
                      _BodyPart(row_position + 1, column_position, l.Snake.SNAKE_BODY),
                      _BodyPart(row_position, column_position, l.Snake.SNAKE_BODY)]
 
+        self.snake_head = self.body[0]
+
     def move_snake(self, direction):
         curr_head = self.body[0]
         new_head = _BodyPart(0, 0, l.Snake.SNAKE_HEAD)
@@ -31,6 +33,7 @@ class Snake:
             new_head = _BodyPart(curr_head.coord_y - 1, curr_head.coord_x, curr_head.visual_char)
 
         self.body.insert(0, new_head)
+        self.snake_head = self.body[0]
         self.body[1].visual_char = l.Snake.SNAKE_BODY
 
     def remove_tail(self):

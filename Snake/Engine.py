@@ -38,15 +38,17 @@ class Engine:
 
         return new_food
 
-    @staticmethod
-    def food_eaten(food, snake_head):  # base class.
-        if food[0] == snake_head.coord_y and food[1] == snake_head.coord_x:
+    def food_eaten(self, food):
+        if food[0] == self.snake.snake_head.coord_y and food[1] == self.snake.snake_head.coord_x:
             return True
         else:
             return False
 
-    def is_dead(self, window_height, window_width, snake_head):  # base class.
-        if snake_head.coord_x == (window_width - 1) or snake_head.coord_y == (window_height - 1) or snake_head.coord_x == 0 or snake_head.coord_y == 0:
+    def is_dead(self, window_height, window_width):
+        if self.snake.snake_head.coord_x == (window_width - 1) \
+                or self.snake.snake_head.coord_y == (window_height - 1) \
+                or self.snake.snake_head.coord_x == 0 \
+                or self.snake.snake_head.coord_y == 0:
             return True
         if self.snake.collide_itself():
             return True

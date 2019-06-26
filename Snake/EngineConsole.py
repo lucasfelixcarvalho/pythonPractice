@@ -23,11 +23,11 @@ class EngineConsole(E.Engine):
             direction = new_direction if new_direction is not None else direction
             self.snake.move_snake(direction)
 
-            if super().is_dead(window_height, window_width, self.snake.body[0]):
+            if super().is_dead(window_height, window_width):
                 self.game_over(screen, window_height, window_width)
                 dead = True
             else:
-                is_food_eaten = super().food_eaten(food, self.snake.body[0])
+                is_food_eaten = super().food_eaten(food)
 
                 if is_food_eaten:
                     super().update_score()
