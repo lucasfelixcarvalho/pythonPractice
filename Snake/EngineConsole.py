@@ -50,7 +50,7 @@ class EngineConsole(E.Engine):
         return True
 
     def show_food(self, screen, window_height, window_width):
-        new_food = super().spawn_food(window_height, window_width)
+        new_food = super().spawn_food(1, window_height - 2, 1, window_width - 2)
         screen.addch(new_food[0], new_food[1], Layout.Food.FOOD_SYMBOL)
         return new_food
 

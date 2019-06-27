@@ -28,7 +28,7 @@ class Snake:
         if direction == 'RIGHT':
             new_head = _BodyPart(curr_head.coord_y, curr_head.coord_x + 1, curr_head.visual_char)
         if direction == 'DOWN':
-            new_head = _BodyPart(curr_head.coord_y + 1, curr_head.coord_x, l.Snake.SNAKE_HEAD)
+            new_head = _BodyPart(curr_head.coord_y + 1, curr_head.coord_x, curr_head.visual_char)
         if direction == 'UP':
             new_head = _BodyPart(curr_head.coord_y - 1, curr_head.coord_x, curr_head.visual_char)
 

@@ -14,7 +14,7 @@ class Engine:
         pass
 
     @staticmethod
-    def map_direction(new_direction, current_direction):  # base class. Change key_pressed to new_direction string (LEFT, UP...)
+    def map_direction(new_direction, current_direction):
         if new_direction == 'LEFT' and current_direction != 'RIGHT':
             return 'LEFT'
         elif new_direction == 'RIGHT' and current_direction != 'LEFT':
@@ -26,12 +26,12 @@ class Engine:
         else:
             return None
 
-    def spawn_food(self, y_border, x_border):  # base class. Return the X/Y position of the food
+    def spawn_food(self, y_lower_limit, y_upper_limit, x_lower_limit, x_upper_limit):
         create_food = True
-        new_food = (0, 0)
+        new_food = (0, 0)  # y axis, x axis
 
         while create_food:
-            new_food = (random.randint(1, y_border - 2), random.randint(1, x_border - 2))
+            new_food = (random.randint(y_lower_limit, y_upper_limit), random.randint(x_lower_limit, x_upper_limit))
 
             if not self.snake.is_position_snake(new_food[0], new_food[1]):
                 create_food = False
@@ -58,5 +58,5 @@ class Engine:
     def __game_over(self, screen, window_height, window_width):
         pass
 
-    def update_score(self):  # base class.
+    def update_score(self):
         self.score += 1
