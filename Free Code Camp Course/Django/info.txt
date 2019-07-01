@@ -1,2 +1,9 @@
 - Course about Django (Python) from Free Code Camp Course.
 Link: https://www.youtube.com/watch?v=F5mRW0jo-U4
+
+-- Preparation:
+
+- Install Django
+- Install virtualenv
+- Initiate a virtualenv
+- Run the server
