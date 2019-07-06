@@ -8,4 +8,4 @@ def home_view(*args, **kwargs):
 
 
 def contact_view(*args, **kwargs):
-    return HttpResponse("<h2>Contact Page</h2>")
+    return HttpResponse("<h3>Contact Page</h3>")
