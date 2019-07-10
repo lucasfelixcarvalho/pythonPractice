@@ -1,2 +1,10 @@
-<h1>Hello World</h1>
-<p>This is a 'p' tag</p>
+{% extends 'base.html' %}
+
+{% block content_main %}
+    <h1>Hello World</h1>
+    <p>This is a 'p' tag</p>
+    <p>Hello {{request.user}}</p>
+{% endblock content_main %}
+{% block content_laugh %}
+    <p>HEHEHEHE</p>
+{% endblock content_laugh %}
