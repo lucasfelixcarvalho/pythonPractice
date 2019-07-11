@@ -1,5 +1,26 @@
 {% extends 'base.html' %}
 {% block content_main %}
-    <h2>About page</h2>
-    <p>This page is about the project</p>
+
+<h2>About page</h2>
+<p>This page is about the project</p>
+<p>{{ my_text }}</p>
+<p>{{ my_number }}</p>
+<p>{{ my_list }}</p>
+
+<ul>
+{% for item in my_list %}
+    {% if item == 123 %}
+        <li>{{ forloop.counter }} - {{ item|add:22 }}</li>
+    {% elif item == 456 %}
+        <li>{{ forloop.counter }} - {{ item|add:-22 }}</li>
+    {% else %}
+        <li>{{ forloop.counter }} - {{ item }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+
+{% if this_is_true %}
+<p>{{ this_is_true }}</p>
+{% endif %}
+
 {% endblock content_main %}
