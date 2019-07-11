@@ -2,10 +2,13 @@
 {% block content_main %}
 
 <h2>About page</h2>
+<h3>{{ title|capfirst }}</h3>
 <p>This page is about the project</p>
-<p>{{ my_text }}</p>
 <p>{{ my_number }}</p>
 <p>{{ my_list }}</p>
+
+{{ html_text|safe }}
+{{ html_text|striptags }}
 
 <ul>
 {% for item in my_list %}
