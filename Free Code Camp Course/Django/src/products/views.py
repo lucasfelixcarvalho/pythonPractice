@@ -16,6 +16,14 @@ def product_create_view(request):
     return render(request, "products/product_create.html", context)
 
 
+def product_create_view2(request):
+    if request.method == 'POST':
+        new_title = request.POST['title']
+        print(new_title)
+    context = {}
+    return render(request, "products/product_create2.html", context)
+
+
 def product_detail_view(request):
     obj = Product.objects.get(id=1)
     context = {
