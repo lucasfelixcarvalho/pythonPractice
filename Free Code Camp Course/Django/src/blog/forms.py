@@ -15,3 +15,12 @@ class ArticleForm(forms.ModelForm):
             "placeholder": "Inform new description"
         }
     ))
+
+class ArticleModelForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = [
+            'title',
+            'content',
+            'active'
+        ]
