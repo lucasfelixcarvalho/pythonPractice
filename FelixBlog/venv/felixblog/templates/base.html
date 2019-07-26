@@ -3,10 +3,11 @@
         <title>Felix Blog</title>
     </head>
     <body>
+        {% extends "bootstrap_ui/bootstrap-skeleton.html" %}
         {% include 'header.html' %}
 
-        {% block content_main %}
-            replace me
-        {% endblock content_main %}
+        {% block body-content %}
+            <h1>Using bootstrap-ui! Replace me!</h1>
+        {% endblock body-content %}
     </body>
 </html>

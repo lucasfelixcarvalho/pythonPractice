@@ -1,9 +1,9 @@
-from django.urls import path
+from django.conf.urls import url, include
 from .views import(
     ArticleListView
 )
 
 app_name = 'blog'
 urlpatterns = [
-    path('', ArticleListView.as_view(), name='article-list')
+    url('', ArticleListView.as_view(), name='article-list')
 ]
