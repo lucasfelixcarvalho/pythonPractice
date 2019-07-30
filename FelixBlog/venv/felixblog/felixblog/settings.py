@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap_ui',
+    #'bootstrap_ui',
     'blog',
 ]
 
@@ -122,4 +122,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # django-bootstrap-ui settings
-DJANGO_BOOTSTRAP_UI_THEME = 'bootswatch-cosmo'
+#DJANGO_BOOTSTRAP_UI_THEME = 'bootswatch-cosmo'
