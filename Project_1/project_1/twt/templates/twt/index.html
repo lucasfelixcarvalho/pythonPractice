@@ -6,12 +6,17 @@
 </head>
 
 <body>
-    <form>
+    <form method="POST" action=".">{% csrf_token %}
         Twitter account name:
         <input type="text" name="account_name"><br>
         <input type="submit" value="Search">
     </form>
 
+    {% for t in tweets %}
+
+        <p>{{ t.text }}</p>
+
+    {% endfor %}
 </body>
 
 
