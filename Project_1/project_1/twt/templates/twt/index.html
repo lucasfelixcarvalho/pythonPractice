@@ -12,6 +12,12 @@
         <input type="submit" value="Search">
     </form>
 
+    {% if account_name %}
+        <p>
+            <h3>Account searched: {{ account_name }}</h3>
+        </p>
+    {% endif %}
+
     {% for t in tweets %}
 
         <p>{{ t.text }}</p>
