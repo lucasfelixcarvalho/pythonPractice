@@ -4,7 +4,7 @@ import json
 class Twitter_api_gateway:
     def __init__(self):
         try:
-            with open('twt/coonfig.json', 'r') as f:
+            with open('twt/config.json', 'r') as f:
                 self.keys = json.load(f)
         except FileNotFoundError:
             self.keys = None
