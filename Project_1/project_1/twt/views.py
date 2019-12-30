@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from django.template import loader
-from . import Twitter_api_gateway
+from .Twitter_api_gateway import Twitter_api_gateway
 
 # Create your views here.
 def index(request):
@@ -11,9 +11,8 @@ def index(request):
     if request.POST:
         postData = request.POST.dict()
         account_name = postData.get('account_name')
-        raw_tweets = get_raw_tweets(account_name)
-        if raw_tweets:
-            tweets = get_clean_tweets(raw_tweets)
+        gateway = Twitter_api_gateway()
+        tweets = gateway.get_tweets(account_name)        
     else:
         print("NOT POST")
 
@@ -22,28 +21,3 @@ def index(request):
         'account_name': account_name
     }
     return render(request, 'twt/index.html', context)
-
-class tweet:
-    def __init__(self, text):  
-        self.text = text
-
-def get_raw_tweets(account_name):
-    print(f'Searching last 5 tweets for account: {account_name}')
-    gateway = Twitter_api_gateway.Twitter_api_gateway()
-    api = gateway.get_api()
-
-    if not api:
-        return
-
-    results = api.GetUserTimeline(screen_name=account_name, count=5, exclude_replies=False)
-
-    print(f'Searched. Results count: {len(results)}')
-    return results
-
-def get_clean_tweets(raw_tweets):
-    tweets = []
-    for row in raw_tweets:
-        tweets.append(row.text)
-        print(row.text)
-
-    return tweets
