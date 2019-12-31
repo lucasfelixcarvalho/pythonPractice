@@ -1,5 +1,6 @@
 import twitter
 import json
+from .models import Tweet
 
 class Twitter_api_gateway:
     def __init__(self):
@@ -51,7 +52,8 @@ class Twitter_api_gateway:
         raw_tweets = self.__get_raw_tweets(account_name)
 
         for row in raw_tweets:
-            tweets.append(row.text)
-            print(row.text)
+            tweet = Tweet(id=row.id_str, text_content=row.text, url='http://google.com')
+            tweets.append(tweet)
+            print(tweet.log_information())
 
         return tweets

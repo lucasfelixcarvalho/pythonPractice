@@ -20,7 +20,7 @@
 
     {% for t in tweets %}
 
-        <li>{{ t }}</li>
+        <li><a href="{{ t.url }}">{{ t.text_content }}</a></li>
 
     {% endfor %}
 </body>
